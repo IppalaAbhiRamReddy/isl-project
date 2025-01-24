@@ -2,16 +2,75 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+/* Base Styling */
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Custom Styling for Forms */
+input {
+  @apply w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+button {
+  @apply w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+label {
+  @apply block text-sm font-medium text-gray-700;
+}
+
+form {
+  @apply w-full max-w-md mx-auto bg-white p-6 rounded-lg shadow-md;
+}
+
+.error-message {
+  @apply text-red-500 text-sm mb-4;
+}
+
+.success-message {
+  @apply text-green-500 text-sm mb-4;
+}
+
+/* Utility Classes */
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.min-height-screen {
+  @apply min-h-screen bg-gray-100;
+}
+
+/* New Styling for ISL Translation Page */
+.video-container {
+  @apply border-2 border-gray-300 bg-gray-200 w-3/4 h-64 flex items-center justify-center;
+}
+
+.video-box {
+  @apply w-full h-full object-cover;
+}
+
+.header-links a {
+  @apply text-gray-700 hover:text-blue-600 transition-colors duration-200;
+}
+
+.header-logo img {
+  @apply h-10 w-10;
+}
+
+.start-btn {
+  @apply bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.reset-btn,
+.save-btn {
+  @apply bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-500 focus:outline-none;
 }

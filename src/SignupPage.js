@@ -1,47 +1,58 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function SignupPage() {
+function SignUp() {
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
-  const handleSignup = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
 
     try {
       const response = await axios.post("http://localhost:5000/signup", {
+        username,
         email,
         password,
       });
 
       if (response.data.success) {
-        alert("Signup Successful!");
-        // Redirect to login page or home
-        window.location.href = "/login";
+        setSuccess("Signup successful! Please log in.");
+        setUsername("");
+        setEmail("");
+        setPassword("");
       } else {
         setError(response.data.message);
       }
     } catch (err) {
       console.error(err);
-      setError("An error occurred. Please try again.");
+      setError("An error occurred during signup. Please try again.");
     }
   };
 
-  const handleGoogleSignup = () => {
-    window.location.href = "http://localhost:5000/auth/google";
-  };
-
-  const handleTwitterSignup = () => {
-    window.location.href = "http://localhost:5000/auth/twitter";
-  };
-
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <form onSubmit={handleSignup}>
+        {error && <p className="text-red-500 text-center">{error}</p>}
+        {success && <p className="text-green-500 text-center">{success}</p>}
+        <form onSubmit={handleSignUp}>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Username
+            </label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
+              required
+            />
+          </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Email
@@ -50,7 +61,7 @@ function SignupPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -62,7 +73,7 @@ function SignupPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -73,24 +84,6 @@ function SignupPage() {
             Sign Up
           </button>
         </form>
-
-        <div className="mt-6">
-          <p className="text-center text-sm">Or sign up with</p>
-          <div className="flex justify-center mt-4">
-            <button
-              onClick={handleGoogleSignup}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 mr-2"
-            >
-              Google
-            </button>
-            <button
-              onClick={handleTwitterSignup}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-            >
-              Twitter
-            </button>
-          </div>
-        </div>
         <p className="text-sm text-center mt-4">
           Already have an account?{" "}
           <a href="/login" className="text-blue-600 hover:underline">
@@ -102,4 +95,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default SignUp;

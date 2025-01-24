@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function LoginPage() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
 
     try {
       const response = await axios.post("http://localhost:5000/login", {
@@ -16,23 +17,23 @@ function LoginPage() {
       });
 
       if (response.data.success) {
-        alert("Login Successful!");
-        // Redirect to the home page or dashboard
+        alert("Login successful!");
+        // Redirect to homepage or dashboard
         window.location.href = "/";
       } else {
         setError(response.data.message);
       }
     } catch (err) {
       console.error(err);
-      setError("An error occurred. Please try again.");
+      setError("An error occurred during login. Please try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        {error && <p className="text-red-500 text-center">{error}</p>}
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
@@ -42,7 +43,7 @@ function LoginPage() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -54,7 +55,7 @@ function LoginPage() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-600"
+              className="w-full px-4 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-500"
               required
             />
           </div>
@@ -76,4 +77,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default Login;
