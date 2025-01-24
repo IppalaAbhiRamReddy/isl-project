@@ -29,9 +29,10 @@ function HomePage() {
             <button className="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-500">
               Courses & Learning
             </button>
+            <a href ="/community" >
             <button className="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-500">
               Community
-            </button>
+            </button> </a>
             <button className="text-white bg-blue-600 px-4 py-2 rounded hover:bg-blue-500">
               Contact Us
             </button>
@@ -119,9 +120,10 @@ function HomePage() {
                 <p className="text-center text-black mb-4">
                   Join a vibrant community of Learners,Mentors and Advocates.
                 </p>
+                <a href="/community">
                 <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-500">
                   Connect
-                </button>
+                </button> </a>
               </div>
             </div>
           </div>

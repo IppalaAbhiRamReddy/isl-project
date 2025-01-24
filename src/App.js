@@ -4,6 +4,7 @@ import HomePage from "./Homepage";
 import LoginPage from "./LoginPage";
 import SignupPage from "./SignupPage";
 import IslTranslation from "./Translation";
+import CommunityPage from "./Community";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/isl-translation" element={<IslTranslation/>} />
+        <Route path="/community" element={<CommunityPage/>} />
       </Routes>
     </Router>
   );
